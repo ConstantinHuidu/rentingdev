@@ -10,9 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
-      <main className="w-full h-[80vh] min-h-[100px] bg-green-100">
-        {children}
-      </main>
+      <main className="w-full h-[80vh] mt-[10vh] bg-green-100">{children}</main>
       <Footer />
     </>
   );
