@@ -1,6 +1,5 @@
 import Head from "next/head";
 import React from "react";
-import singupIMG from "../images/singupIMG.jpg";
 
 const signup = () => {
   return (
@@ -11,54 +10,9 @@ const signup = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex items-center justify-center">
+      <main className="flex items-center justify-center h-1/3">
         <h1 className="text-red-500 md:text-blue-400">Signup page</h1>
       </main>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
-        <div className="hidden sm:block">
-          <img
-            className="w-auto pl-20 h-3/5 object-none"
-            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-            alt=""
-          />
-        </div>
-
-        <div className="flex flex-start justify-center">
-          <form className="w-2/3 mx-auto rounded-lg p-8 px-8">
-            <h2 className="text-5xl font-bold">
-              <span className="text-indigo-900">Welcome to</span>{" "}
-              <span className="text-yellow-400">RentEquip,</span>
-            </h2>
-            <p className="text-indigo-900 text-2xl py-7">Sing in to continue</p>
-            {/* <h2 className="text-4xl dark:text-white font-bold text-center">
-              SIGN IN
-            </h2> */}
-            <div className="flex flex-col text-gray-400 py-2">
-              <label className="text-indigo-900">Email</label>
-              <input className="rounded-lg mt-2 p-2" type="email" />
-            </div>
-            <div className="flex flex-col text-gray-400 py-2">
-              <label className="text-indigo-900">Password</label>
-              <input className="p-2 rounded-lg mt-2" type="password" />
-            </div>
-            <div className="flex justify-between text-gray-400 py-2">
-              <p className="flex items-center">
-                <input className="mr-2" type="checkbox" />{" "}
-                <span className="text-indigo-900">Remember Me</span>
-              </p>
-              <p className="text-indigo-900">Forgot Your Password</p>
-            </div>
-            <button className="w-full my-5 py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg">
-              Sign in
-            </button>
-
-            <button className="w-full my-2 py-2 bg-white shadow-lg hover:shadow-indigo-500/50 text-black font-semibold rounded-lg">
-              Sign in with Google
-            </button>
-          </form>
-        </div>
-      </div>
     </>
   );
 };
