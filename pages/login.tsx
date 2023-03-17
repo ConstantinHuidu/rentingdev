@@ -52,6 +52,7 @@ const login = () => {
                   <span className="text-indigo-900">Remember Me</span>
                 </p>
                 <p className="text-indigo-900">Forgot Your Password</p>
+                <p>test</p>
               </div>
               <button className="w-full my-5 py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg">
                 Sign in
