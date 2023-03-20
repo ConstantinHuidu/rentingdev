@@ -3,13 +3,11 @@ import { connectToDB } from "../../../helpers/db";
 import { hashPassword } from "@/helpers/auth";
 
 export default async function handler(
-  res: NextApiResponse,
-  req: NextApiRequest
+  req: NextApiRequest,
+  res: NextApiResponse
 ) {
-  //   if (req.method !== "POST") return;
-  const data = req.body;
-  //   console.log(data);
-  const { name, email, password } = data;
+  if (req.method !== "POST") return;
+  const { name, email, password } = req.body;
 
   if (!name || !email || !email.includes("@") || !password) {
     res.status(422).json({ message: "Please fill in the form" });
@@ -32,12 +30,11 @@ export default async function handler(
 
   const newUser = {
     name: name,
-    email: email.toLowercase(),
+    email: email,
     password: hashedPassword,
   };
 
   const result = await db.collection("users").insertOne(newUser);
-  res.status(201).json({ message: "Created new user", user: newUser });
-
   client.close();
+  res.status(201).json({ message: "Created new user", user: newUser });
 }

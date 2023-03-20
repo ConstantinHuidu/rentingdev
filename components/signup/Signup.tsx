@@ -1,9 +1,10 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import signup from "../../assets/images/signup.svg";
 import { SignupType } from "./Signup.types.js";
 import { validateEmail } from "@/helpers/auth";
+import { useRouter } from "next/router";
 
 const defaultSignupData = {
   name: "",
@@ -16,6 +17,8 @@ const Signup = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [signupData, setSignupData] = useState<SignupType>(defaultSignupData);
 
+  const router = useRouter();
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const formField: string = e.target.id;
     const userInput: SignupType = { ...signupData };
@@ -23,34 +26,24 @@ const Signup = () => {
     setSignupData(userInput);
   };
 
-  const createUser = async ({ name, email, password }: SignupType) => {
-    // const { name, email, password } = userData;
-    const userSignup = {
-      name: name,
-      email: email,
-      password: password,
-    };
-    // console.log(JSON.stringify(userData));
-    const response = await fetch("http://localhost:3000//api/auth/signup", {
+  async function createUser(info: SignupType) {
+    const response = await fetch("/api/auth/signup", {
       method: "POST",
-      body: JSON.stringify(userSignup),
+      body: JSON.stringify(info),
       headers: {
         "Content-Type": "application/json",
       },
     });
 
     const data = await response.json();
-    // console.log(data);
     if (!response.ok) {
       throw new Error(data.message || "Something went wrong!");
     }
 
     return data;
-  };
+  }
 
-  const submitFormHandler = async (e: any) => {
-    console.log("OK");
-    console.log(signupData);
+  const submitFormHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // === START BASIC VALIDATION ====
@@ -83,7 +76,7 @@ const Signup = () => {
 
     try {
       const result = await createUser(signupData);
-      //   console.log(result);
+      router.push("/login");
     } catch (err: any) {
       console.log(err.mesage || "Somthing went wrong");
     }
