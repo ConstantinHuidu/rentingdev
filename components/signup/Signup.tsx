@@ -1,17 +1,19 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import signup from "../../assets/images/signup.png";
 
 const Signup = () => {
   return (
     <div className="grid md:grid-cols-5 gap-4 m-4 h-full md:w-[80%] mx-auto">
-      <div className="hidden md:col-span-3 bg-yellow-50 md:flex justify-center items-center">
-        image placeholder
+      <div className="relative hidden md:col-span-3 md:flex justify-center items-center my-4">
+        <Image src={signup} alt="signup" className="object-scale-down" fill />
       </div>
-      <div className="col-span-2 flex justify-center">
+      <div className="col-span-2 md:col-span-2 flex justify-center">
         <form className="w-10/12 md:w-full flex flex-col p-3 md:p-8">
           <h2 className="text-xl md:text-4xl font-bold">
             <span className="text-indigo-900">Welcome to</span>{" "}
-            <span className="text-yellow-600 opacity-80 ">RentEquip,</span>
+            <span className="text-yellow-600 opacity-80">RentEquip,</span>
           </h2>
           <p className="text-indigo-900 text-sm font-semibold py-1 md:py-4">
             Create an account
