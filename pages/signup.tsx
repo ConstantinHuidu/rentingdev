@@ -1,3 +1,4 @@
+import Signup from "@/components/signup/Signup";
 import Head from "next/head";
 import React from "react";
 
@@ -10,9 +11,7 @@ const signup = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex items-center justify-center">
-        <h1 className="text-red-500 md:text-blue-400">Signup page</h1>
-      </main>
+      <Signup />
     </>
   );
 };
