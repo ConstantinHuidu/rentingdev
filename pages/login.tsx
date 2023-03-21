@@ -14,12 +14,10 @@ const login = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex items-center justify-center">
-        <h1 className="text-red-500 md:text-blue-400">Login page</h1>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 w-full h-3/5">
-          <div className="hidden md:block h-3/5">
+        <div className="grid grid-cols-2 h-full mx-auto">
+          <div className="hidden md:block h-full">
             <Image
-              className="w-full pl-20 h-3/5 object-cover"
+              className="w-full pl-20 h-1/3 object-cover"
               src={singupIMG}
               alt=""
               width={1080}
@@ -27,7 +25,7 @@ const login = () => {
           </div>
 
           <div className="flex flex-start justify-center">
-            <form className="w-2/3 mx-auto rounded-lg p-8 px-8">
+            <form className="w-full mx-auto rounded-lg p-8 px-8">
               <h2 className="text-5xl font-bold">
                 <span className="text-indigo-900">Welcome to</span>{" "}
                 <span className="text-yellow-400">RentEquip,</span>
@@ -52,7 +50,6 @@ const login = () => {
                   <span className="text-indigo-900">Remember Me</span>
                 </p>
                 <p className="text-indigo-900">Forgot Your Password</p>
-                <p>test</p>
               </div>
               <button className="w-full my-5 py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg">
                 Sign in
