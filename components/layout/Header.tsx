@@ -5,9 +5,9 @@ const Header = () => {
   return (
     <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] shadow">
       <div className="container m-auto h-full flex justify-between items-center text-gray-700">
-        <h1 className="pl-8 py-4 text-2xl font-bold uppercase">
+        <h1 className="pl-8 py-4 text-4xl text-yellow-600 opacity-80 font-bold">
           <Link className="hover:bg-gray-200 rounded-lg py-4 px-6" href="/">
-            rentdev
+            RentEquip
           </Link>
         </h1>
         <ul className="hidden md:flex items-center pr-10 text-base font-semibold cursor-pointer uppercase">
