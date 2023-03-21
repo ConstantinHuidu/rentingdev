@@ -1,5 +1,8 @@
+import { getSession } from "next-auth/react";
 import Head from "next/head";
+import Image from "next/image";
 import React from "react";
+import Login from "../components/login/Login";
 
 const login = () => {
   return (
@@ -10,11 +13,18 @@ const login = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex items-center justify-center">
-        <h1 className="text-red-500 md:text-blue-400">Login page</h1>
-      </main>
+      <Login />
     </>
   );
 };
+
+// === SERVER-SIDE REDIRECT IF USER IS AUTHENTICATED ===
+export async function getServerSideProps(context: any) {
+  const session = await getSession({ req: context.req });
+  if (session) {
+    return { redirect: { destination: "/", permanent: false } };
+  }
+  return { props: { session } };
+}
 
 export default login;
