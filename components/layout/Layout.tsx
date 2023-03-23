@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -7,12 +7,22 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
+  const [darkMode, setDarkMode] = useState(false);
+  console.log(darkMode);
+
+  const handleDarkMode = () => {
+    // console.log("okkk");
+    setDarkMode((darkMode) => !darkMode);
+  };
+
   return (
-    <>
-      <Header />
-      <main className="w-full h-[80vh] mt-[10vh] ">{children}</main>
+    <div className={darkMode ? "dark" : ""}>
+      <Header toggleDarkMode={handleDarkMode} darkMode={darkMode} />
+      <main className="w-full h-[80vh] mt-[10vh] bg-white dark:bg-gray-900">
+        {children}
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

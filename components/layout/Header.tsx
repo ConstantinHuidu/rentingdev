@@ -1,25 +1,33 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import { type } from "os";
+import DarkModeButton from "../genericComponents/DarkModeButton";
 
-const Header = () => {
+type HeaderPropsType = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+};
+
+const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
   const { data: session, status } = useSession();
 
   const handleSignOut = () => {
     signOut();
   };
+
   return (
-    <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] shadow">
+    <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] shadow dark:bg-gray-900">
       <div className="container m-auto h-full flex justify-between items-center text-gray-700">
         <h1 className="pl-8 py-4 text-4xl text-yellow-600 font-bold">
-          <Link className="hover:bg-gray-200 rounded-lg py-4 px-6" href="/">
+          <Link className="hover:bg-gray-600 rounded-lg py-4 px-6" href="/">
             RentEquip
           </Link>
         </h1>
-        <ul className="hidden md:flex items-center pr-10 text-base font-semibold cursor-pointer uppercase">
+        <ul className="hidden md:flex items-center pr-10 text-base font-semibold cursor-pointer uppercase dark:text-white">
           <Link
-            className="hover:bg-gray-200 rounded-lg py-4 px-6"
+            className="hover:bg-gray-200 rounded-lg py-4 px-6 dark:hover:text-black"
             href="/about"
           >
             About
@@ -59,6 +67,8 @@ const Header = () => {
               Sign out
             </Link>
           )}
+          {/* <button onClick={toggleDarkMode}>Toggle DarkMode</button> */}
+          <DarkModeButton toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         </ul>
         <button className="block md:hidden py-3 px-4 mx-2 rounded focus:outline-none hover:bg-gray-200 group">
           <div className="w-7 h-1 bg-gray-600 mb-1"></div>
