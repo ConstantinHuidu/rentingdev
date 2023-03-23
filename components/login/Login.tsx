@@ -59,7 +59,7 @@ const Login = () => {
         >
           <h2 className="text-xl md:text-4xl font-bold">
             <span className="text-indigo-900">Welcome to</span>{" "}
-            <span className="text-yellow-600 opacity-80">RentEquip,</span>
+            <span className="text-yellow-600">RentEquip,</span>
           </h2>
           <p className="text-indigo-900 text-sm font-semibold py-1 md:py-12">
             Login into your account
@@ -111,10 +111,10 @@ const Login = () => {
           </button>
 
           <Link
-            href="/login"
+            href="/signup"
             className="underline text-blue-600 text-sm hover:text-blue-800 visited:text-purple-600 py-2 md:py-4 flex justify-center items-center"
           >
-            Already have an account? Log In
+            Don't have an account? Create one
           </Link>
         </form>
       </div>

@@ -94,7 +94,7 @@ const Signup = () => {
         >
           <h2 className="text-xl md:text-4xl font-bold">
             <span className="text-indigo-900">Welcome to</span>{" "}
-            <span className="text-yellow-600 opacity-80">RentEquip,</span>
+            <span className="text-yellow-600">RentEquip,</span>
           </h2>
           <p className="text-indigo-900 text-sm font-semibold py-1 md:py-4">
             Create an account
