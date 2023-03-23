@@ -5,6 +5,7 @@ import signup from "../../assets/images/signup.svg";
 import { SignupType } from "./Signup.types.js";
 import { validateEmail } from "@/helpers/auth";
 import { useRouter } from "next/router";
+import LoadingSpinner from "../genericComponents/LoadingSpinner";
 
 const defaultSignupData = {
   name: "",
@@ -16,6 +17,7 @@ const defaultSignupData = {
 const Signup = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [signupData, setSignupData] = useState<SignupType>(defaultSignupData);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -70,6 +72,8 @@ const Signup = () => {
       return;
     }
 
+    setIsLoading(true);
+
     //  === END BASIC VALIDATION ===
 
     // === SEND USER INFO TO DB ===
@@ -78,6 +82,7 @@ const Signup = () => {
       const result = await createUser(signupData);
       router.push("/login");
     } catch (err: any) {
+      setIsLoading(false);
       console.log(err.mesage || "Somthing went wrong");
     }
   };
@@ -155,14 +160,19 @@ const Signup = () => {
           </div>
 
           <button
-            className="w-full my-2 md:my-5 py-1 md:py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg disabled:bg-gray-500 disabled:hover:shadow-none"
-            disabled={!isChecked}
+            className="flex justify-center items-center w-full my-2 md:my-5 py-1 md:py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg disabled:bg-gray-500 disabled:hover:shadow-none"
+            disabled={!isChecked || isLoading}
             type="submit"
           >
-            Sign in
+            {isLoading && <LoadingSpinner />}
+            {isLoading && "Signin you in"}
+            {!isLoading && "Sign in"}
           </button>
 
-          <button className="w-full my-1 md:my-2 py-1 md:py-2 bg-white shadow-lg hover:shadow-indigo-500/50 text-black font-semibold rounded-lg">
+          <button
+            disabled={isLoading}
+            className="w-full my-1 md:my-2 py-1 md:py-2 bg-white shadow-lg hover:shadow-indigo-500/50 text-black font-semibold rounded-lg disabled:bg-gray-500 disabled:hover:shadow-none"
+          >
             Sign in with Google
           </button>
 
