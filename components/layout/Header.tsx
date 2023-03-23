@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] shadow">
       <div className="container m-auto h-full flex justify-between items-center text-gray-700">
-        <h1 className="pl-8 py-4 text-4xl text-yellow-600 opacity-80 font-bold">
+        <h1 className="pl-8 py-4 text-4xl text-yellow-600 font-bold">
           <Link className="hover:bg-gray-200 rounded-lg py-4 px-6" href="/">
             RentEquip
           </Link>
@@ -64,7 +64,7 @@ const Header = () => {
           <div className="w-7 h-1 bg-gray-600 mb-1"></div>
           <div className="w-7 h-1 bg-gray-600 mb-1"></div>
           <div className="w-7 h-1 bg-gray-600"></div>
-          <div className="absolute top-14 -right-full h-screen w-full bg-white border opacity-0 group-focus:right-0 group-focus:opacity-100 transition-all duration-300">
+          <div className="absolute top-14 -right-full h-screen w-full bg-white border opacity-0 group-focus:right-0 group-focus:opacity-100 group-focus:z-10 transition-all duration-300">
             <ul className="flex flex-col items-center w-full text-base pt-10 uppercase">
               <Link
                 className="hover:bg-gray-200 rounded-lg py-4 px-6 w-full cursor-pointer"
