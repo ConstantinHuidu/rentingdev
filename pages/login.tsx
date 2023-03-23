@@ -1,6 +1,6 @@
+import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
-import Image from "next/image";
 import React from "react";
 import Login from "../components/login/Login";
 
@@ -19,12 +19,12 @@ const login = () => {
 };
 
 // === SERVER-SIDE REDIRECT IF USER IS AUTHENTICATED ===
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req });
   if (session) {
     return { redirect: { destination: "/", permanent: false } };
   }
   return { props: { session } };
-}
+};
 
 export default login;
