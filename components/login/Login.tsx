@@ -111,10 +111,10 @@ const Login = () => {
           </button>
 
           <Link
-            href="/login"
+            href="/signup"
             className="underline text-blue-600 text-sm hover:text-blue-800 visited:text-purple-600 py-2 md:py-4 flex justify-center items-center"
           >
-            Already have an account? Log In
+            Don't have an account? Create one
           </Link>
         </form>
       </div>
