@@ -8,10 +8,8 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   const [darkMode, setDarkMode] = useState(false);
-  console.log(darkMode);
 
   const handleDarkMode = () => {
-    // console.log("okkk");
     setDarkMode((darkMode) => !darkMode);
   };
 
