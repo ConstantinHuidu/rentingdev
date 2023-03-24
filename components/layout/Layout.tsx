@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className={darkMode ? "dark" : ""}>
       <Header toggleDarkMode={handleDarkMode} darkMode={darkMode} />
-      <main className="w-full h-[80vh] mt-[10vh] bg-white dark:bg-gray-900">
+      <main className="w-full h-[80vh] mt-[10vh] bg-white dark:bg-gray-900 transition-all duration-300">
         {children}
       </main>
       <Footer />
