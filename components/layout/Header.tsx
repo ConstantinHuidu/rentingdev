@@ -27,7 +27,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
       <div className="flex justify-center items-center">
         <span className="absolute w-4/5 bottom-3 h-0.5 bg-yellow-600"></span>
       </div>
-      <div className="container m-auto h-full flex justify-between items-center text-gray-700">
+      <div className="container w-[80%] m-auto h-full flex justify-between items-center text-gray-700">
         <h1 className="pl-8 py-4 text-4xl text-yellow-600 font-bold">
           <Link
             className="hover:bg-gray-200 rounded-lg py-1 px-4 transition-all duration-300"
@@ -54,7 +54,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
             />
           </div>
           <button
-            className="block md:hidden py-3 px-4 mx-2rounded focus:outline-none hover:bg-gray-200 group transition-all duration-300"
+            className="block md:hidden py-3 px-4 mx-2rounded focus:outline-none hover:bg-gray-200 rounded-lg group transition-all duration-300"
             onClick={() => setIsOpen(!isOpen)}
           >
             <div
