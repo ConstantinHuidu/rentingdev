@@ -18,11 +18,12 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] shadow dark:bg-gray-900 transition-all duration-300">
+    <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] dark:bg-gray-900 transition-all duration-300">
+      <span className="absolute left-10 right-10 bottom-3 h-0.5 bg-yellow-600"></span>
       <div className="container m-auto h-full flex justify-between items-center text-gray-700">
         <h1 className="pl-8 py-4 text-4xl text-yellow-600 font-bold">
           <Link
-            className="hover:bg-gray-200 rounded-lg py-4 px-6 transition-all duration-300"
+            className="hover:bg-gray-200 rounded-lg py-1 px-4 transition-all duration-300"
             href="/"
           >
             RentEquip
@@ -38,14 +39,14 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
           )}
           <DarkModeButton toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         </ul>
-        <div className="flex md:hidden justify-center items-center dark:text-white">
+        <div className="flex md:hidden justify-between items-center dark:text-white">
           <div className="block md:hidden">
             <DarkModeButton
               toggleDarkMode={toggleDarkMode}
               darkMode={darkMode}
             />
           </div>
-          <button className="block md:hidden py-3 px-4 mx-2 rounded focus:outline-none hover:bg-gray-200 group transition-all duration-300">
+          <button className="block md:hidden py-3 px-4 mx-2rounded focus:outline-none hover:bg-gray-200 group transition-all duration-300">
             <div className="w-7 h-1 bg-gray-600 mb-1 dark:bg-white dark:group-hover:bg-gray-900 transition-all duration-300"></div>
             <div className="w-7 h-1 bg-gray-600 mb-1 dark:bg-white dark:group-hover:bg-gray-900 transition-all duration-300"></div>
             <div className="w-7 h-1 bg-gray-600 dark:bg-white dark:group-hover:bg-gray-900 transition-all duration-300"></div>
