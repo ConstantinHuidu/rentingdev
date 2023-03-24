@@ -10,7 +10,10 @@ const DarkModeButton = ({
   toggleDarkMode,
 }: DarkModeButtonPropsType) => {
   return (
-    <div onClick={toggleDarkMode} className="bg-white dark:bg-gray-900">
+    <div
+      onClick={toggleDarkMode}
+      className="bg-white dark:bg-gray-900 px-4 py-3 md:py-4 cursor-pointer hover:bg-gray-200  md:hover:bg-opacity-100 rounded-lg dark:hover:bg-gray-200 dark:hover:text-black transition-all duration-300"
+    >
       {!darkMode && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
