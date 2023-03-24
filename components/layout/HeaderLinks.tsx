@@ -18,7 +18,7 @@ export const DesktopLink = ({ label, href, handleClick }: LinkTypeProps) => (
 );
 export const MobileLink = ({ href, label, handleClick }: LinkTypeProps) => (
   <Link
-    className="hover:bg-gray-200 rounded-lg py-4 px-6 w-full cursor-pointer dark:hover:text-black transition-all duration-150"
+    className="hover:bg-gray-200 rounded-lg py-4 px-6 w-full cursor-pointer text-black dark:text-white dark:hover:text-black transition-all duration-300"
     href={href}
     onClick={handleClick}
   >

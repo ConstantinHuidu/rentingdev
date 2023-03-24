@@ -12,6 +12,11 @@ type HeaderPropsType = {
 
 const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
   const { data: session, status } = useSession();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const genericHamburgerLine = `w-6 h-1 bg-black my-1 dark:bg-white dark:group-hover:bg-gray-900 transition ease transform duration-300`;
+
+  const mobileDrawer = `absolute top-20 h-screen w-full bg-white  transition-all transform duration-300 ease-in-out dark:bg-gray-900`;
 
   const handleSignOut = () => {
     signOut();
@@ -46,11 +51,30 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
               darkMode={darkMode}
             />
           </div>
-          <button className="block md:hidden py-3 px-4 mx-2rounded focus:outline-none hover:bg-gray-200 group transition-all duration-300">
-            <div className="w-7 h-1 bg-gray-600 mb-1 dark:bg-white dark:group-hover:bg-gray-900 transition-all duration-300"></div>
-            <div className="w-7 h-1 bg-gray-600 mb-1 dark:bg-white dark:group-hover:bg-gray-900 transition-all duration-300"></div>
-            <div className="w-7 h-1 bg-gray-600 dark:bg-white dark:group-hover:bg-gray-900 transition-all duration-300"></div>
-            <div className="absolute top-20 -right-full h-screen w-full bg-white opacity-0 group-focus:right-0 group-focus:opacity-100 group-focus:z-10 transition-all duration-300 ease-in-out dark:bg-gray-900">
+          <button
+            className="block md:hidden py-3 px-4 mx-2rounded focus:outline-none hover:bg-gray-200 group transition-all duration-300"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div
+              className={`${genericHamburgerLine} ${
+                isOpen ? "-rotate-45 translate-y-2 group-hover:opacity-100" : ""
+              }`}
+            />
+            <div
+              className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : ""}`}
+            />
+            <div
+              className={`${genericHamburgerLine} ${
+                isOpen
+                  ? "rotate-45 -translate-y-2 transition ease transform duration-300 group-hover:opacity-100"
+                  : ""
+              }`}
+            />
+            <div
+              className={`${mobileDrawer} ${
+                isOpen ? "right-0 opacity-100 z-10" : "-right-full opacity-0"
+              }`}
+            >
               <ul className="flex flex-col items-center w-full text-base pt-10 font-semibold uppercase">
                 <MobileLink href="/about" label="About" />
                 <MobileLink href="/products" label="Products" />
