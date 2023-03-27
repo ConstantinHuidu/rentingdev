@@ -1,24 +1,27 @@
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { ChangeEvent, FormEvent, useState } from "react";
-
-import signup from "../../assets/images/signup.svg";
-import { LoginType } from "./Login.types";
-
 import { signIn } from "next-auth/react";
-import { validateEmail } from "@/helpers/auth";
 import { useRouter } from "next/router";
+import signup from "../../assets/images/signup.svg";
 import LoadingSpinner from "../genericComponents/LoadingSpinner";
+import { loginFormIsValid } from "./LoginValidation";
+import { FormErrorType, LoginType } from "./Login.types";
 
-const defaultLoginData = {
+const defaultLoginData: LoginType = {
   email: "",
   password: "",
+};
+const formNoError: FormErrorType = {
+  emailError: { status: false, message: "" },
+  passwordError: { status: false, message: "" },
 };
 
 const Login = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [loginData, setLoginData] = useState<LoginType>(defaultLoginData);
+  const [formError, setFormError] = useState<FormErrorType>(formNoError);
 
   const router = useRouter();
 
@@ -29,13 +32,33 @@ const Login = () => {
     setLoginData(userInput);
   };
 
+  const handleFormValidation = (email: string, password: string) => {
+    // === clear any previous errors ===
+    setFormError(formNoError);
+
+    // === destructure data object from the validation function return ===
+    const { emailInputError, passwordInputError, formIsValid } =
+      loginFormIsValid(email, password);
+
+    // === create a copy of the form error state ===
+    const newFormError = { ...formError };
+
+    // === overwrite the error state according to validation ===
+    newFormError.emailError = emailInputError;
+    newFormError.passwordError = passwordInputError;
+
+    setFormError(newFormError);
+    return formIsValid;
+  };
+
   const submitFormHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const emailValid = validateEmail(loginData.email);
+    const { email, password } = loginData;
 
-    if (!emailValid || !loginData.password) {
-      //thor error
+    const formDataValid = handleFormValidation(email, password);
+
+    if (!formDataValid) {
       return;
     }
 
@@ -43,12 +66,13 @@ const Login = () => {
 
     const result = await signIn("credentials", {
       redirect: false,
-      email: loginData.email,
-      password: loginData.password,
+      email: email,
+      password: password,
     });
 
     if (result?.error) {
       setIsLoading(false);
+      //TODO: show toaster notification
       return;
     }
     router.push("/products");
@@ -62,6 +86,7 @@ const Login = () => {
       <div className="col-span-2 md:col-span-2 flex justify-center">
         <form
           onSubmit={submitFormHandler}
+          noValidate
           className="w-10/12 md:w-full flex flex-col p-3 md:p-8"
         >
           <h2 className="text-xl md:text-4xl font-bold">
@@ -82,6 +107,11 @@ const Login = () => {
               id="email"
               onChange={handleInputChange}
             />
+            {formError.emailError.status && (
+              <span className="text-[0.8rem] text-red-500 pl-1">
+                {formError.emailError.message}
+              </span>
+            )}
           </div>
 
           <div className="flex flex-col text-gray-400 py-1 md:py-2">
@@ -94,6 +124,11 @@ const Login = () => {
               id="password"
               onChange={handleInputChange}
             />
+            {formError.passwordError.status && (
+              <span className="text-[0.8rem] text-red-500 pl-1">
+                {formError.passwordError.message}
+              </span>
+            )}
           </div>
 
           <div className="flex justify-between text-gray-400 py-2">
@@ -105,6 +140,7 @@ const Login = () => {
                 className="mr-2 cursor-pointer"
                 type="checkbox"
                 checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
               />
               <span className="text-indigo-900 dark:text-white">
                 Remember Me
