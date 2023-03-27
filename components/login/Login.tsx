@@ -65,15 +65,17 @@ const Login = () => {
           className="w-10/12 md:w-full flex flex-col p-3 md:p-8"
         >
           <h2 className="text-xl md:text-4xl font-bold">
-            <span className="text-indigo-900">Welcome to</span>{" "}
+            <span className="text-indigo-900 dark:text-white">Welcome to</span>{" "}
             <span className="text-yellow-600">RentEquip,</span>
           </h2>
-          <p className="text-indigo-900 text-sm font-semibold py-1 md:py-12">
+          <p className="text-indigo-900 dark:text-white text-sm font-semibold py-1 md:py-12">
             Login into your account
           </p>
 
           <div className="flex flex-col text-gray-400 py-1 md:py-2">
-            <label className="text-indigo-900 text-sm">E-mail</label>
+            <label className="text-indigo-900 dark:text-white text-sm">
+              E-mail
+            </label>
             <input
               className="border border-gray-300 focus:border-indigo-400 rounded-lg mt-2 p-1 md:p-2 outline-none"
               type="email"
@@ -83,7 +85,9 @@ const Login = () => {
           </div>
 
           <div className="flex flex-col text-gray-400 py-1 md:py-2">
-            <label className="text-indigo-900 text-sm">Password</label>
+            <label className="text-indigo-900 dark:text-white text-sm">
+              Password
+            </label>
             <input
               className="border border-gray-300 focus:border-indigo-400 rounded-lg mt-2 p-1 md:p-2 outline-none"
               type="password"
@@ -93,16 +97,20 @@ const Login = () => {
           </div>
 
           <div className="flex justify-between text-gray-400 py-2">
-            <p className="flex items-center">
+            <p
+              onClick={() => setIsChecked(!isChecked)}
+              className="flex items-center cursor-pointer"
+            >
               <input
-                className="mr-2"
+                className="mr-2 cursor-pointer"
                 type="checkbox"
                 checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
               />
-              <span className="text-indigo-900">Remember Me</span>
+              <span className="text-indigo-900 dark:text-white ">
+                Remember Me
+              </span>
             </p>
-            <p className="text-indigo-600 cursor-pointer underline text-sm hover:text-blue-800 visited:text-purple-600">
+            <p className="text-indigo-600 dark:text-white cursor-pointer underline text-sm hover:text-blue-800 visited:text-purple-600">
               Forgot Your Password
             </p>
           </div>
@@ -125,7 +133,7 @@ const Login = () => {
 
           <Link
             href="/signup"
-            className="underline text-blue-600 text-sm hover:text-blue-800 visited:text-purple-600 py-2 md:py-4 flex justify-center items-center"
+            className="underline text-blue-600 dark:text-white text-sm hover:text-blue-800 visited:text-purple-600 py-2 md:py-4 flex justify-center items-center"
           >
             Don't have an account? Create one
           </Link>
