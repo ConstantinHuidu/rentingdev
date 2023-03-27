@@ -8,7 +8,7 @@ import LoadingSpinner from "../genericComponents/LoadingSpinner";
 import { loginFormIsValid } from "./LoginValidation";
 import { FormErrorType, LoginType } from "./Login.types";
 
-const defaultLoginData = {
+const defaultLoginData: LoginType = {
   email: "",
   password: "",
 };
@@ -33,35 +33,21 @@ const Login = () => {
   };
 
   const handleFormValidation = (email: string, password: string) => {
+    // === clear any previous errors ===
     setFormError(formNoError);
-    const { emailIsValid, passwordIsValid, formIsValid } = loginFormIsValid(
-      email,
-      password
-    );
-    if (!formIsValid) {
-      const newFormError = { ...formError };
 
-      !emailIsValid
-        ? (newFormError.emailError = {
-            status: true,
-            message: "Invalid e-mail format",
-          })
-        : (newFormError.emailError = {
-            status: false,
-            message: "",
-          });
+    // === destructure data object from the validation function return ===
+    const { emailInputError, passwordInputError, formIsValid } =
+      loginFormIsValid(email, password);
 
-      !passwordIsValid
-        ? (newFormError.passwordError = {
-            status: true,
-            message: "Password needs to be at least 6 characters long",
-          })
-        : (newFormError.passwordError = {
-            status: false,
-            message: "",
-          });
-      setFormError(newFormError);
-    }
+    // === create a copy of the form error state ===
+    const newFormError = { ...formError };
+
+    // === overwrite the error state according to validation ===
+    newFormError.emailError = emailInputError;
+    newFormError.passwordError = passwordInputError;
+
+    setFormError(newFormError);
     return formIsValid;
   };
 
@@ -86,6 +72,7 @@ const Login = () => {
 
     if (result?.error) {
       setIsLoading(false);
+      //TODO: show toaster notification
       return;
     }
     router.push("/products");
