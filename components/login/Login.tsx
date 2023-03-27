@@ -97,14 +97,16 @@ const Login = () => {
           </div>
 
           <div className="flex justify-between text-gray-400 py-2">
-            <p className="flex items-center">
+            <p
+              onClick={() => setIsChecked(!isChecked)}
+              className="flex items-center cursor-pointer"
+            >
               <input
-                className="mr-2"
+                className="mr-2 cursor-pointer"
                 type="checkbox"
                 checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
               />
-              <span className="text-indigo-900 dark:text-white">
+              <span className="text-indigo-900 dark:text-white ">
                 Remember Me
               </span>
             </p>
