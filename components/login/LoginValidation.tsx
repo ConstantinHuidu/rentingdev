@@ -8,21 +8,25 @@ export const loginFormIsValid = (email: string, password: string) => {
   const emailIsValid = validateEmail(email);
   const passwordIsValid = validatePassword(password);
 
-  const emailInputError = {
+  const emailError = {
     status: !emailIsValid,
     message: emailIsValid ? "" : "Invalid e-mail format",
   };
 
-  const passwordInputError = {
+  const passwordError = {
     status: !passwordIsValid,
     message: passwordIsValid
       ? ""
       : "Password needs to be at least 6 characters long",
   };
 
+  const loginFormError = {
+    emailError,
+    passwordError,
+  };
+
   return {
-    emailInputError,
-    passwordInputError,
+    loginFormError,
     formIsValid: emailIsValid && passwordIsValid,
   };
 };

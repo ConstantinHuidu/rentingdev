@@ -2,22 +2,30 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import signup from "../../assets/images/signup.svg";
-import { SignupType } from "./Signup.types.js";
-import { validateEmail } from "@/helpers/auth";
+import { SignupFormErrorType, SignupType } from "./Signup.types.js";
 import { useRouter } from "next/router";
 import LoadingSpinner from "../genericComponents/LoadingSpinner";
+import { signupFormIsValid } from "./SignupValidation";
 
-const defaultSignupData = {
+const defaultSignupData: SignupType = {
   name: "",
   email: "",
   password: "",
   confirmation: "",
 };
 
+const signupNoError: SignupFormErrorType = {
+  emailError: { status: false, message: "" },
+  nameError: { status: false, message: "" },
+  passwordError: { status: false, message: "" },
+  confirmationError: { status: false, message: "" },
+};
+
 const Signup = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [signupData, setSignupData] = useState<SignupType>(defaultSignupData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [signupFormError, setSignupFormError] = useState(signupNoError);
 
   const router = useRouter();
 
@@ -26,6 +34,16 @@ const Signup = () => {
     const userInput: SignupType = { ...signupData };
     userInput[formField as keyof typeof userInput] = e.target.value;
     setSignupData(userInput);
+  };
+
+  const handleFormValidation = (data: SignupType) => {
+    // === clear any previous errors ===
+    setSignupFormError(signupNoError);
+
+    const result = signupFormIsValid(data);
+
+    setSignupFormError(result.signupFormError);
+    return result.signupFormIsValid;
   };
 
   async function createUser(info: SignupType) {
@@ -48,33 +66,13 @@ const Signup = () => {
   const submitFormHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // === START BASIC VALIDATION ====
+    const formDataValid = handleFormValidation(signupData);
 
-    const emailValid = validateEmail(signupData.email);
-
-    if (
-      !signupData.name ||
-      !signupData.email ||
-      signupData.password.trim().length < 6 ||
-      !signupData.confirmation
-    ) {
-      console.log("Fields empty");
-      return;
-    }
-
-    if (!emailValid) {
-      console.log("Invalid email");
-      return;
-    }
-
-    if (signupData.password !== signupData.confirmation) {
-      console.log("The passwords don't match");
+    if (!formDataValid) {
       return;
     }
 
     setIsLoading(true);
-
-    //  === END BASIC VALIDATION ===
 
     // === SEND USER INFO TO DB ===
 
@@ -115,6 +113,11 @@ const Signup = () => {
               id="name"
               onChange={handleInputChange}
             />
+            {
+              <span className="text-[0.8rem] text-red-500 pl-1">
+                {signupFormError?.nameError?.message}
+              </span>
+            }
           </div>
 
           <div className="flex flex-col text-gray-400 py-1 md:py-2">
@@ -127,6 +130,11 @@ const Signup = () => {
               id="email"
               onChange={handleInputChange}
             />
+            {
+              <span className="text-[0.8rem] text-red-500 pl-1">
+                {signupFormError?.emailError?.message}
+              </span>
+            }
           </div>
 
           <div className="flex flex-col text-gray-400 py-1 md:py-2">
@@ -139,6 +147,11 @@ const Signup = () => {
               id="password"
               onChange={handleInputChange}
             />
+            {
+              <span className="text-[0.8rem] text-red-500 pl-1">
+                {signupFormError?.passwordError?.message}
+              </span>
+            }
           </div>
 
           <div className="flex flex-col text-gray-400 py-1 md:py-2">
@@ -151,6 +164,11 @@ const Signup = () => {
               id="confirmation"
               onChange={handleInputChange}
             />
+            {
+              <span className="text-[0.8rem] text-red-500 pl-1">
+                {signupFormError?.confirmationError?.message}
+              </span>
+            }
           </div>
 
           <div className="flex justify-between text-gray-400 py-1 md:py-2">

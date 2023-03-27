@@ -36,19 +36,10 @@ const Login = () => {
     // === clear any previous errors ===
     setFormError(formNoError);
 
-    // === destructure data object from the validation function return ===
-    const { emailInputError, passwordInputError, formIsValid } =
-      loginFormIsValid(email, password);
+    const result = loginFormIsValid(email, password);
 
-    // === create a copy of the form error state ===
-    const newFormError = { ...formError };
-
-    // === overwrite the error state according to validation ===
-    newFormError.emailError = emailInputError;
-    newFormError.passwordError = passwordInputError;
-
-    setFormError(newFormError);
-    return formIsValid;
+    setFormError(result.loginFormError);
+    return result.formIsValid;
   };
 
   const submitFormHandler = async (e: FormEvent<HTMLFormElement>) => {
