@@ -106,7 +106,7 @@ const Login = () => {
                 type="checkbox"
                 checked={isChecked}
               />
-              <span className="text-indigo-900 dark:text-white ">
+              <span className="text-indigo-900 dark:text-white">
                 Remember Me
               </span>
             </p>
@@ -115,7 +115,7 @@ const Login = () => {
             </p>
           </div>
           <button
-            className="flex justify-center items-center w-full my-2 md:my-5 py-1 md:py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg disabled:bg-gray-500 disabled:hover:shadow-none"
+            className="flex justify-center items-center w-full my-2 md:my-5 py-1 md:py-2 bg-indigo-900 shadow-lg hover:shadow-indigo-500/50 text-white font-semibold rounded-lg disabled:bg-gray-500 disabled:hover:shadow-none disabled:cursor-not-allowed"
             type="submit"
             disabled={isLoading}
           >
@@ -133,7 +133,7 @@ const Login = () => {
 
           <Link
             href="/signup"
-            className="underline text-blue-600 dark:text-white text-sm hover:text-blue-800 visited:text-purple-600 py-2 md:py-4 flex justify-center items-center"
+            className="underline text-blue-600 dark:text-white text-sm hover:text-blue-800 dark:hover:text-blue-400 visited:text-purple-600 py-2 md:py-4 flex justify-center items-center"
           >
             Don't have an account? Create one
           </Link>
