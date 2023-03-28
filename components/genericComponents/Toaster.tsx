@@ -158,7 +158,7 @@ const WarningToaster = ({ message, onHandleClick }: ToasterProps) => (
 
 const Toaster = ({ status, message }: MasterToasterProps) => {
   const [showToaster, setShowToaster] = useState(false);
-  const toasterTimeout = status === "error" ? 6000 : 3000;
+  const toasterTimeout = status === "error" ? 7000 : 5000;
 
   useEffect(() => {
     setShowToaster(true);
