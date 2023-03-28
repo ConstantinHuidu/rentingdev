@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-export type toasterStatus = "success" | "error" | "warning" | "info";
+export type toasterStatus = "success" | "error" | "warning" | "info" | "";
 
-type MasterToasterProps = {
+export type MasterToasterProps = {
   status: toasterStatus;
   message: string;
 };
