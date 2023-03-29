@@ -23,7 +23,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] dark:bg-gray-900 transition-all duration-300">
+    <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] dark:bg-gray-900 transition-all duration-300 z-50">
       <div className="flex justify-center items-center">
         <span className="absolute w-4/5 bottom-3 h-0.5 bg-yellow-600"></span>
       </div>
