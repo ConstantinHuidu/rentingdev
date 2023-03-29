@@ -75,7 +75,7 @@ const Login = () => {
 
       return;
     }
-    router.push("/products");
+    router.push("/");
   };
 
   return (
