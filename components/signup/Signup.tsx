@@ -6,6 +6,8 @@ import { SignupFormErrorType, SignupType } from "./Signup.types.js";
 import { useRouter } from "next/router";
 import LoadingSpinner from "../genericComponents/LoadingSpinner";
 import { signupFormIsValid } from "./SignupValidation";
+import Toaster, { MasterToasterProps } from "../genericComponents/Toaster";
+import { signIn } from "next-auth/react";
 
 const defaultSignupData: SignupType = {
   name: "",
@@ -26,6 +28,8 @@ const Signup = () => {
   const [signupData, setSignupData] = useState<SignupType>(defaultSignupData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [signupFormError, setSignupFormError] = useState(signupNoError);
+  const [showToaster, setShowToaster] = useState<boolean>(false);
+  const [toasterData, setToasterData] = useState<MasterToasterProps>();
 
   const router = useRouter();
 
@@ -65,6 +69,7 @@ const Signup = () => {
 
   const submitFormHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setShowToaster(false);
 
     const formDataValid = handleFormValidation(signupData);
 
@@ -77,11 +82,31 @@ const Signup = () => {
     // === SEND USER INFO TO DB ===
 
     try {
+      // === create user ===
       const result = await createUser(signupData);
-      router.push("/login");
+
+      // === login user with the credential from signup form ===
+      const login = await signIn("credentials", {
+        redirect: false,
+        email: signupData.email,
+        password: signupData.password,
+      });
+
+      if (login?.error) {
+        setShowToaster(true);
+        setToasterData({
+          status: "error",
+          message: login.error,
+        });
+      }
+      router.push("/");
     } catch (err: any) {
       setIsLoading(false);
-      console.log(err.mesage || "Somthing went wrong");
+      setShowToaster(true);
+      setToasterData({
+        status: "error",
+        message: err.message,
+      });
     }
   };
 
@@ -213,6 +238,12 @@ const Signup = () => {
           </Link>
         </form>
       </div>
+      {showToaster && (
+        <Toaster
+          status={toasterData?.status || ""}
+          message={toasterData?.message || ""}
+        />
+      )}
     </div>
   );
 };
