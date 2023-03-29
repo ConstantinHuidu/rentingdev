@@ -7,6 +7,7 @@ import signup from "../../assets/images/signup.svg";
 import LoadingSpinner from "../genericComponents/LoadingSpinner";
 import { loginFormIsValid } from "./LoginValidation";
 import { FormErrorType, LoginType } from "./Login.types";
+import Toaster, { MasterToasterProps } from "../genericComponents/Toaster";
 
 const defaultLoginData: LoginType = {
   email: "",
@@ -20,6 +21,8 @@ const formNoError: FormErrorType = {
 const Login = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showToaster, setShowToaster] = useState<boolean>(false);
+  const [toasterData, setToasterData] = useState<MasterToasterProps>();
   const [loginData, setLoginData] = useState<LoginType>(defaultLoginData);
   const [formError, setFormError] = useState<FormErrorType>(formNoError);
 
@@ -44,6 +47,7 @@ const Login = () => {
 
   const submitFormHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setShowToaster(false);
 
     const { email, password } = loginData;
 
@@ -63,7 +67,12 @@ const Login = () => {
 
     if (result?.error) {
       setIsLoading(false);
-      //TODO: show toaster notification
+      setShowToaster(true);
+      setToasterData({
+        status: "error",
+        message: result.error,
+      });
+
       return;
     }
     router.push("/products");
@@ -166,6 +175,12 @@ const Login = () => {
           </Link>
         </form>
       </div>
+      {showToaster && (
+        <Toaster
+          status={toasterData?.status || ""}
+          message={toasterData?.message || ""}
+        />
+      )}
     </div>
   );
 };
