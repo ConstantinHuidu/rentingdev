@@ -19,7 +19,7 @@ const ProductCard = () => (
 
 const TopChoices = () => {
   return (
-    <div className="flex flex-col justify-start items-center w-full h-[880px] md:h-[550px] -mt-10">
+    <div className="flex flex-col justify-start items-center w-full h-[800px] md:h-[550px] -mt-10">
       <div className="text-gray-400 dark:text-white text-md md:text-xl font-semibold uppercase mt-1 tracking-wider">
         <hr className="h-1 bg-yellow-500 mb-3"></hr>
         popular rental deals
