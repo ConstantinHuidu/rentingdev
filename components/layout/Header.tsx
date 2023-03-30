@@ -25,7 +25,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderPropsType) => {
   return (
     <nav className="fixed top-0 left-0 bg-white w-full h-[10vh] dark:bg-gray-900 transition-all duration-300 z-50">
       <div className="flex justify-center items-center">
-        <span className="absolute w-4/5 bottom-3 h-0.5 bg-yellow-600"></span>
+        <span className="absolute w-[85%] bottom-3 h-0.5 bg-yellow-600"></span>
       </div>
       <div className="container w-[80%] m-auto h-full flex justify-between items-center text-gray-700">
         <h1 className="pl-8 py-4 text-4xl text-yellow-600 font-bold">
