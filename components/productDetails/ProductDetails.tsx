@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { BiLike, BiCommentAdd } from "react-icons/bi";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { BsFillPersonFill } from "react-icons/bs";
 
 type RatingStarProps = {
   status: string;
@@ -128,13 +129,17 @@ const ProductDetails = () => {
         </div>
       </div>
       {/* Product review container  */}
-      <div className="w-full flex flex-col justify-start items-start space-y-5 pb-5">
+      <div className="w-full flex flex-col justify-start items-start space-y-5 pb-5 pr-5">
         <h1 className="mt-1 text-2xl font-bold mb-3">Reviews</h1>
 
         {/* first review  */}
         <div className="flex justify-start items-center w-full md:space-x-5">
-          <div className="hidden md:flex flex-col justify-center items-center space-y-1 w-40">
-            <div className="md:block w-14 h-14 rounded-full bg-yellow-600 flex-none"></div>
+          <div className="hidden md:flex flex-col justify-center items-start space-y-1 w-28 flex-none">
+            <div className="w-14 h-14 rounded-full bg-yellow-600 flex justify-center items-center flex-none">
+              <p className="text-2xl text-white font-semibold tracking-widest">
+                IP
+              </p>
+            </div>
             <h5 className="text-sm">Ion Popescu</h5>
             <h5 className="text-sm">20.03.2023</h5>
           </div>
@@ -151,7 +156,7 @@ const ProductDetails = () => {
             </div>
             <h5 className="md:hidden text-sm">Ion Popescu</h5>
             <h5 className="md:hidden text-sm">20.03.2023</h5>
-            <p className="text-sm text-gray-400 max-w-[15rem] sm:max-w-xl md:max-w-2xl lg:max-m-4xl">
+            <p className="text-sm text-gray-400 max-w-xl md:max-w-2xl lg:max-w-7xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
               nulla?
             </p>
@@ -174,8 +179,12 @@ const ProductDetails = () => {
 
         {/* second review  */}
         <div className="flex justify-start items-center w-full md:space-x-5">
-          <div className="hidden md:flex flex-col justify-center items-center space-y-1 w-40">
-            <div className="md:block w-14 h-14 rounded-full bg-yellow-600 flex-none"></div>
+          <div className="hidden md:flex flex-col justify-center items-start space-y-1 w-28 flex-none">
+            <div className="w-14 h-14 rounded-full bg-yellow-600 flex justify-center items-center flex-none">
+              <p className="text-2xl text-white font-semibold tracking-widest">
+                EI
+              </p>
+            </div>
             <h5 className="text-sm">Elena Ionescu</h5>
             <h5 className="text-sm">07.02.2023</h5>
           </div>
@@ -192,7 +201,7 @@ const ProductDetails = () => {
             </div>
             <h5 className="md:hidden text-sm">Elena Ionescu</h5>
             <h5 className="md:hidden text-sm">07.02.2023</h5>
-            <p className="text-sm text-gray-400 max-w-[15rem] sm:max-w-xl md:max-w-2xl lg:max-m-4xl">
+            <p className="text-sm text-gray-400 max-w-xl md:max-w-2xl lg:max-w-7xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
               quaerat, laboriosam nostrum rerum magnam accusamus, eligendi
               voluptatum labore minima doloribus vitae quidem officia dolorum
@@ -217,8 +226,10 @@ const ProductDetails = () => {
 
         {/* third review  */}
         <div className="flex justify-start items-center w-full md:space-x-5">
-          <div className="hidden md:flex flex-col justify-center items-center space-y-1 w-40">
-            <div className="md:block w-14 h-14 rounded-full bg-yellow-600 flex-none"></div>
+          <div className="hidden md:flex flex-col justify-center items-start space-y-1 w-28 flex-none">
+            <div className="w-14 h-14 rounded-full bg-yellow-600 flex justify-center items-start flex-none">
+              <BsFillPersonFill className="text-[3.2rem] text-white" />
+            </div>
             <h5 className="text-sm">Bogdan Petrescu</h5>
             <h5 className="text-sm">10.04.2023</h5>
           </div>
@@ -235,7 +246,7 @@ const ProductDetails = () => {
             </div>
             <h5 className="md:hidden text-sm">Bogdan Petrescu</h5>
             <h5 className="md:hidden text-sm">10.04.2023</h5>
-            <p className="text-sm text-gray-400 max-w-[15rem] sm:max-w-xl md:max-w-2xl lg:max-m-4xl">
+            <p className="text-sm text-gray-400 max-w-xl md:max-w-2xl lg:max-w-7xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
               corporis fugiat rem corrupti quos iure iste tenetur non quaerat
               accusamus vitae blanditiis voluptas consequatur, ducimus iusto
