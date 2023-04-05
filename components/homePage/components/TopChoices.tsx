@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { HiArrowRight } from "react-icons/hi";
 
@@ -18,7 +19,12 @@ const ProductCard = () => (
       <p className="text-indigo-900 dark:text-white text-xl font-semibold">
         200 <span className="text-gray-400 text-sm">/ day</span>
       </p>
-      <p className="text-yellow-600 text-xl font-semibold">Rent now</p>
+      <Link
+        href={"/product-demo"}
+        className="text-yellow-600 text-xl font-semibold"
+      >
+        Rent now
+      </Link>
     </div>
   </div>
 );
