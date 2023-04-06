@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import StarRating from "./StarRating";
 import { BiLike, BiCommentAdd } from "react-icons/bi";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
@@ -11,6 +11,8 @@ const ReviewCard = ({
   reviewBody,
   starCount,
 }: ReviewCardProps) => {
+  const [isLiked, setIsLiked] = useState(false);
+
   const getReviewerInitials = (reviewerName: string) => {
     return reviewerName
       .split(" ")
@@ -45,8 +47,11 @@ const ReviewCard = ({
             {reviewBody}
           </p>
           <div className="flex justify-start items-center space-x-3 text-blue-700 dark-text-blue-500">
-            <span className=" cursor-pointer">
-              <AiOutlineLike />
+            <span
+              className=" cursor-pointer"
+              onClick={() => setIsLiked(!isLiked)}
+            >
+              {isLiked ? <AiFillLike /> : <AiOutlineLike />}
             </span>
             <span className="w-[1px] h-3 bg-slate-400"></span>
             <span className="flex items-center justify-center space-x-3 cursor-pointer">
