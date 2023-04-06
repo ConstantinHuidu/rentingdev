@@ -39,7 +39,7 @@ export const DUMMY_REVIEWS: ReviewCardProps[] = [
   },
   {
     id: "review5",
-    reviewer: "Cosmin Popa",
+    reviewer: "cosmin popa",
     date: "03.01.2023",
     reviewTitle: "Awesome",
     reviewBody:
@@ -56,4 +56,6 @@ export const DUMMY_PRODUCT_INFO: ProductDetailsType = {
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae nemo minima eveniet saepe? Atque, eos voluptatum blanditiis optio dolorum mollitia.",
   pricePerDay: 100,
   pricePerWeek: 200,
+  countRents: 130,
+  countReviews: 15,
 };

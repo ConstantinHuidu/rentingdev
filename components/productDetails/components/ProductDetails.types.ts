@@ -17,4 +17,6 @@ export type ProductDetailsType = {
   productDescription: string;
   pricePerDay: number;
   pricePerWeek: number;
+  countRents: number;
+  countReviews: number;
 };
