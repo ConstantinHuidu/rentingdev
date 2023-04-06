@@ -16,9 +16,7 @@ const ReviewCard = ({
   const getReviewerInitials = (reviewerName: string) => {
     return reviewerName
       .split(" ")
-      .map(function (item) {
-        return item[0].toUpperCase();
-      })
+      .map((item) => item[0].toUpperCase())
       .join("");
   };
 
