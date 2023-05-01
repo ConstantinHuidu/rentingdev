@@ -165,7 +165,10 @@ const Landing = () => {
       </div>
       <div className="grid grid-cols-1 gap-4 md:hidden">
         {DUMMY_PRODUCTS_INFO.map((item) => (
-          <div className="bg-white space-y-3 p-4 rounded-lg shadow border mx-2">
+          <div
+            className="bg-white space-y-3 p-4 rounded-lg shadow border mx-2"
+            key={item.id}
+          >
             <div className="flex items-center space-x-2 text-sm">
               <div>
                 <a href="#" className="text-blue-500 font-bold hover:underline">
